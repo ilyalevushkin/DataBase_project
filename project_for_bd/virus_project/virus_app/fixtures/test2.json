@@ -1,0 +1,1 @@
+[{"model": "virus_app.virus", "pk": 1, "fields": {"name": "virus1", "epidemiology": 1, "photo": "img/viruses/picture.jpg"}},{"model": "virus_app.virus", "pk": 1, "fields": {"name": "virus1", "epidemiology": 1, "photo": "img/viruses/picture.jpg\n"}},{"model": "virus_app.virus", "pk": 2, "fields": {"name": "virus2", "epidemiology": 2, "photo": "img/viruses/picture.jpg"}},

@@ -1,0 +1,85 @@
+{% extends "virus_app/base_info.html" %}
+{% load static %}
+{% block title %}
+    Профиль
+{% endblock %}
+{% block style %}
+    <link type="text/css" href="{% static 'css/profile.css' %}" rel="stylesheet">
+    <link type="text/css" href="{% static 'css/profile_background.css' %}" rel="stylesheet">
+{% endblock %}
+{% block content %}
+	<div class="container card emp-profile">
+        <form method="post">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="profile-img">
+                        <img class="img-thumbnail" src="{{ user.profile.photo.url}}" alt="Фото"/>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="profile-head">
+                                    <h5>
+                                        {{ request.user.username }}
+                                    </h5>
+                                    <h6>
+                                        {% if request.user.is_staff %}
+                                            Администратор
+                                        {% else %}
+                                            Обычный пользователь
+                                        {% endif %}
+                                    </h6>
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Информация</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="tab-content profile-tab" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                <div class="row" style="width:150%;">
+                                    <div class="col-md-3">
+                                        <label>Имя</label>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <p>{{ request.user.username }}</p>
+                                    </div>
+                                </div>
+                                <div class="row" style="width:150%;">
+                                    <div class="col-md-3">
+                                        <label>Email</label>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <p>{{ request.user.email }}</p>
+                                    </div>
+                                </div>
+                                <div class="row" style="width:150%;">
+                                    <div class="col-md-3">
+                                        <label>Phone</label>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <p>{{ request.user.profile.phone }}</p>
+                                    </div>
+                                </div>
+                                <div class="row" style="width:150%;">
+                                    <div class="col-md-3">
+                                        <label>О себе</label>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <p>{{ request.user.profile.about }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Ред."/>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

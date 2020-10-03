@@ -1,0 +1,453 @@
+{% extends 'virus_app/base_info.html' %}
+
+{% load static %}
+{% load googlecharts %}
+{% block title %}
+    Графики
+{% endblock %}
+{% block style %}
+    <!-- Переливающийся фон -->
+    <!-- <script src="{% static 'js/background.js' %}"></script> -->
+    <!-- Стандартный фон -->
+    <link type="text/css" href="{% static 'css/profile_background.css' %}" rel="stylesheet">
+    <link type="text/css" href="{% static 'css/print_graphics.css' %}" rel="stylesheet">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawRegionInfected);
+    google.charts.setOnLoadCallback(drawRegionRecovered);
+    google.charts.setOnLoadCallback(drawRegionDead);
+    google.charts.setOnLoadCallback(drawCountryInfected);
+    google.charts.setOnLoadCallback(drawCountryRecovered);
+    google.charts.setOnLoadCallback(drawCountryDead);
+    google.charts.setOnLoadCallback(drawTownInfected);
+    google.charts.setOnLoadCallback(drawTownRecovered);
+    google.charts.setOnLoadCallback(drawTownDead);
+    google.charts.setOnLoadCallback(drawDateRegionInfected);
+    google.charts.setOnLoadCallback(drawDateRegionRecovered);
+    google.charts.setOnLoadCallback(drawDateRegionDead);
+    google.charts.setOnLoadCallback(drawDateCountryInfected);
+    google.charts.setOnLoadCallback(drawDateCountryRecovered);
+    google.charts.setOnLoadCallback(drawDateCountryDead);
+    google.charts.setOnLoadCallback(drawDateTownInfected);
+    google.charts.setOnLoadCallback(drawDateTownRecovered);
+    google.charts.setOnLoadCallback(drawDateTownDead);
+
+    function drawRegionInfected() {
+        var data = google.visualization.arrayToDataTable(JSON.parse('{{ region_infected_data | safe }}'));
+
+        var options = {
+          title: 'Статистика по зараженным в кол-во зараженных/кол-во проживающих',
+          curveType: 'function',
+          legend: { position: 'bottom' },
+            width: 450,
+            height: 500
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('region_infected'));
+
+        chart.draw(data, options);
+    }
+
+    function drawRegionRecovered() {
+        var data = google.visualization.arrayToDataTable(JSON.parse('{{ region_recovered_data | safe }}'));
+
+        var options = {
+          title: 'Статистика по выздоровевшим, кол-во выздоровевших/кол-во проживающих',
+          curveType: 'function',
+          legend: { position: 'bottom' },
+            width: 450,
+            height: 500
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('region_recovered'));
+
+        chart.draw(data, options);
+    }
+
+    function drawRegionDead() {
+        var data = google.visualization.arrayToDataTable(JSON.parse('{{ region_dead_data | safe }}'));
+
+        var options = {
+          title: 'Статистика по умершим, кол-во умерших/кол-во проживающих',
+          curveType: 'function',
+          legend: { position: 'bottom' },
+            width: 450,
+            height: 500
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('region_dead'));
+
+        chart.draw(data, options);
+    }
+
+    function drawCountryInfected() {
+        var data = google.visualization.arrayToDataTable(JSON.parse('{{ country_infected_data | safe }}'));
+
+        var options = {
+          title: 'Статистика по зараженным в кол-во зараженных/кол-во проживающих',
+          curveType: 'function',
+          legend: { position: 'bottom' },
+            width: 450,
+            height: 500
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('country_infected'));
+
+        chart.draw(data, options);
+    }
+
+    function drawCountryRecovered() {
+        var data = google.visualization.arrayToDataTable(JSON.parse('{{ country_recovered_data | safe }}'));
+
+        var options = {
+          title: 'Статистика по выздоровевшим, кол-во выздоровевших/кол-во проживающих',
+          curveType: 'function',
+          legend: { position: 'bottom' },
+            width: 450,
+            height: 500
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('country_recovered'));
+
+        chart.draw(data, options);
+    }
+
+    function drawCountryDead() {
+        var data = google.visualization.arrayToDataTable(JSON.parse('{{ country_dead_data | safe }}'));
+
+        var options = {
+          title: 'Статистика по умершим, кол-во умерших/кол-во проживающих',
+          curveType: 'function',
+          legend: { position: 'bottom' },
+            width: 450,
+            height: 500
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('country_dead'));
+
+        chart.draw(data, options);
+    }
+
+    function drawTownInfected() {
+        var data = google.visualization.arrayToDataTable(JSON.parse('{{ town_infected_data | safe }}'));
+
+        var options = {
+          title: 'Статистика по зараженным в кол-во зараженных/кол-во проживающих',
+          curveType: 'function',
+          legend: { position: 'bottom' },
+            width: 450,
+            height: 500
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('town_infected'));
+
+        chart.draw(data, options);
+    }
+
+    function drawTownRecovered() {
+        var data = google.visualization.arrayToDataTable(JSON.parse('{{ town_recovered_data | safe }}'));
+
+        var options = {
+          title: 'Статистика по выздоровевшим, кол-во выздоровевших/кол-во проживающих',
+          curveType: 'function',
+          legend: { position: 'bottom' },
+            width: 450,
+            height: 500
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('town_recovered'));
+
+        chart.draw(data, options);
+    }
+
+    function drawTownDead() {
+        var data = google.visualization.arrayToDataTable(JSON.parse('{{ town_dead_data | safe }}'));
+
+        var options = {
+          title: 'Статистика по умершим, кол-во умерших/кол-во проживающих',
+          curveType: 'function',
+          legend: { position: 'bottom' },
+            width: 450,
+            height: 500
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('town_dead'));
+
+        chart.draw(data, options);
+    }
+
+    <!-- Повторение всех функций, только уже для графиков с датой -->
+    function drawDateRegionInfected() {
+        var data = google.visualization.arrayToDataTable(JSON.parse('{{ date_region_infected_data | safe }}'));
+
+        var options = {
+          title: 'Статистика по зараженным в кол-во зараженных/кол-во проживающих',
+          curveType: 'function',
+          legend: { position: 'bottom' },
+            width: 450,
+            height: 500
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('date_region_infected'));
+
+        chart.draw(data, options);
+    }
+
+    function drawDateRegionRecovered() {
+        var data = google.visualization.arrayToDataTable(JSON.parse('{{ date_region_recovered_data | safe }}'));
+
+        var options = {
+          title: 'Статистика по выздоровевшим, кол-во выздоровевших/кол-во проживающих',
+          curveType: 'function',
+          legend: { position: 'bottom' },
+            width: 450,
+            height: 500
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('date_region_recovered'));
+
+        chart.draw(data, options);
+    }
+
+    function drawDateRegionDead() {
+        var data = google.visualization.arrayToDataTable(JSON.parse('{{ date_region_dead_data | safe }}'));
+
+        var options = {
+          title: 'Статистика по умершим, кол-во умерших/кол-во проживающих',
+          curveType: 'function',
+          legend: { position: 'bottom' },
+            width: 450,
+            height: 500
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('date_region_dead'));
+
+        chart.draw(data, options);
+    }
+
+    function drawDateCountryInfected() {
+        var data = google.visualization.arrayToDataTable(JSON.parse('{{ date_country_infected_data | safe }}'));
+
+        var options = {
+          title: 'Статистика по зараженным в кол-во зараженных/кол-во проживающих',
+          curveType: 'function',
+          legend: { position: 'bottom' },
+            width: 450,
+            height: 500
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('date_country_infected'));
+
+        chart.draw(data, options);
+    }
+
+    function drawDateCountryRecovered() {
+        var data = google.visualization.arrayToDataTable(JSON.parse('{{ date_country_recovered_data | safe }}'));
+
+        var options = {
+          title: 'Статистика по выздоровевшим, кол-во выздоровевших/кол-во проживающих',
+          curveType: 'function',
+          legend: { position: 'bottom' },
+            width: 450,
+            height: 500
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('date_country_recovered'));
+
+        chart.draw(data, options);
+    }
+
+    function drawDateCountryDead() {
+        var data = google.visualization.arrayToDataTable(JSON.parse('{{ date_country_dead_data | safe }}'));
+
+        var options = {
+          title: 'Статистика по умершим, кол-во умерших/кол-во проживающих',
+          curveType: 'function',
+          legend: { position: 'bottom' },
+            width: 450,
+            height: 500
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('date_country_dead'));
+
+        chart.draw(data, options);
+    }
+
+    function drawDateTownInfected() {
+        var data = google.visualization.arrayToDataTable(JSON.parse('{{ date_town_infected_data | safe }}'));
+
+        var options = {
+          title: 'Статистика по зараженным в кол-во зараженных/кол-во проживающих',
+          curveType: 'function',
+          legend: { position: 'bottom' },
+            width: 450,
+            height: 500
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('date_town_infected'));
+
+        chart.draw(data, options);
+    }
+
+    function drawDateTownRecovered() {
+        var data = google.visualization.arrayToDataTable(JSON.parse('{{ date_town_recovered_data | safe }}'));
+
+        var options = {
+          title: 'Статистика по выздоровевшим, кол-во выздоровевших/кол-во проживающих',
+          curveType: 'function',
+          legend: { position: 'bottom' },
+            width: 450,
+            height: 500
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('date_town_recovered'));
+
+        chart.draw(data, options);
+    }
+
+    function drawDateTownDead() {
+        var data = google.visualization.arrayToDataTable(JSON.parse('{{ date_town_dead_data | safe }}'));
+
+        var options = {
+          title: 'Статистика по умершим, кол-во умерших/кол-во проживающих',
+          curveType: 'function',
+          legend: { position: 'bottom' },
+            width: 450,
+            height: 500
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('date_town_dead'));
+
+        chart.draw(data, options);
+    }
+
+        </script>
+{% endblock %}
+
+{% block add_navbar %}
+    <ul class="nav nav-tabs" id="PlaceTab" style="margin-left: 69px;" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="region-tab" data-toggle="tab" href="#region" role="tab" aria-controls="region" aria-selected="true">Регионы</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="country-tab" data-toggle="tab" href="#country" role="tab" aria-controls="country" aria-selected="false">Страны</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="town-tab" data-toggle="tab" href="#town" role="tab" aria-controls="town" aria-selected="false">Города</a>
+        </li>
+    </ul>
+{% endblock %}
+
+{% block content %}
+    <div class="tab-content profile-tab" id="PlaceTabContent">
+        <div class="tab-pane fade show active" id="region" role="tabpanel" aria-labelledby="region-tab">
+            <div class="container">
+                <div class="row">
+                    <div class="col-6 card block">
+                        <h2>Анализ по динамике развития</h2>
+                    </div>
+                    <div class="col-6 card block">
+                        <h2>Анализ по дате развития</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 card block">
+                        <div id="region_infected" style="width: 450px; height: 500px;"></div>
+                    </div>
+                    <div class="col-6 card block">
+                        <div id="date_region_infected" style="width: 450px; height: 500px;"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 card block">
+                        <div id="region_recovered" style="width: 450px; height: 500px;"></div>
+                    </div>
+                    <div class="col-6 card block">
+                        <div id="date_region_recovered" style="width: 450px; height: 500px;"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 card block">
+                        <div id="region_dead" style="width: 450px; height: 500px;"></div>
+                    </div>
+                    <div class="col-6 card block">
+                        <div id="date_region_dead" style="width: 450px; height: 500px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade show" id="country" role="tabpanel" aria-labelledby="country-tab">
+            <div class="container">
+                <div class="row">
+                    <div class="col-6 card block">
+                        <h2>Анализ по динамике развития</h2>
+                    </div>
+                    <div class="col-6 card block">
+                        <h2>Анализ по дате развития</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 card block">
+                        <div id="country_infected" style="width: 450px; height: 500px;"></div>
+                    </div>
+                    <div class="col-6 card block">
+                        <div id="date_country_infected" style="width: 450px; height: 500px;"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 card block">
+                        <div id="country_recovered" style="width: 450px; height: 500px;"></div>
+                    </div>
+                    <div class="col-6 card block">
+                        <div id="date_country_recovered" style="width: 450px; height: 500px;"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 card block">
+                        <div id="country_dead" style="width: 450px; height: 500px;"></div>
+                    </div>
+                    <div class="col-6 card block">
+                        <div id="date_country_dead" style="width: 450px; height: 500px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade show" id="town" role="tabpanel" aria-labelledby="town-tab">
+            <div class="container">
+                <div class="row">
+                    <div class="col-6 card block">
+                        <h2>Анализ по динамике развития</h2>
+                    </div>
+                    <div class="col-6 card block">
+                        <h2>Анализ по дате развития</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 card block">
+                        <div id="town_infected" style="width: 450px; height: 500px;"></div>
+                    </div>
+                    <div class="col-6 card block">
+                        <div id="date_town_infected" style="width: 450px; height: 500px;"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 card block">
+                        <div id="town_recovered" style="width: 450px; height: 500px;"></div>
+                    </div>
+                    <div class="col-6 card block">
+                        <div id="date_town_recovered" style="width: 450px; height: 500px;"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 card block">
+                        <div id="town_dead" style="width: 450px; height: 500px;"></div>
+                    </div>
+                    <div class="col-6 card block">
+                        <div id="date_town_dead" style="width: 450px; height: 500px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

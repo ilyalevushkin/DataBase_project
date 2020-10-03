@@ -1,0 +1,11 @@
+{% extends 'virus_app/base_info.html' %}
+
+{% load static %}
+{% block style %}
+    <!-- Переливающийся фон -->
+    <script src="{% static 'js/background.js' %}"></script>
+    <!-- Стандартный фон -->
+    <!-- <link type="text/css" href="{% static 'css/profile_background.css' %}" rel="stylesheet"> -->
+    {% block more_style %}
+    {% endblock %}
+{% endblock %}

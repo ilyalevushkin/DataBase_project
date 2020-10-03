@@ -1,0 +1,115 @@
+{% extends 'virus_app/place_demography/base_place_demography.html' %}
+
+{% load static %}
+
+{% block more_style %}
+    <link type="text/css" href="{% static 'css/place_demography/place_demography_grid.css' %}" rel="stylesheet">
+    <link type="text/css" href="{% static 'css/fontawesome.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        {% for towns in two_towns_in_row %}
+            <div class="row row-flex row-flex-wrap">
+                {% for town in towns %}
+                    {% if town %}
+                        <div class="col-md-6 col-sm-6">
+                            <div class="card mb-4 mt-4 pl-2 pt-2 profile-tab">
+                                <div class="row no-gutters">
+                                    <div class="col-9">
+                                        <div class="card-block px-2">
+                                            <h4 class="card-title">Город <a href="">{{ town.town }}</a></h4>
+                                        </div>
+                                    </div>
+                                    <div class="col pl-4">
+                                        <div class="row" style="margin-top: 5px;">
+                                            {% if request.user.is_active %}
+                                                {% if town in fav_towns %}
+                                                    <button type="submit" name="delete_from_fav_{{ town.town }}" class="btn btn-primary btn-circle"><i class="fas fa-star fa-2x" aria-hidden="true"></i></button>
+                                                {% else %}
+                                                    <button type="submit" name="put_in_fav_{{ town.town }}" class="btn btn-primary btn-circle"><i class="far fa-star fa-2x" aria-hidden="true"></i></button>
+                                                {% endif %}
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row no-gutters">
+                                    <div class="col-md-5">
+                                        <label>Численность</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <p>{{ town.population }}</p>
+                                    </div>
+                                </div>
+                                <div class="row no-gutters">
+                                    <div class="col-md-5">
+                                        <label>Количество зараженных</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <p>{{ town.infected }}</p>
+                                    </div>
+                                </div>
+                                <div class="row no-gutters">
+                                    <div class="col-md-5">
+                                        <label>Количество выздоровевших</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <p>{{ town.recovered }}</p>
+                                    </div>
+                                </div>
+                                <div class="row no-gutters">
+                                    <div class="col-md-5">
+                                        <label>Количество умерших</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <p>{{ town.dead }}</p>
+                                    </div>
+                                </div>
+                                <div class="row no-gutters">
+                                    <div class="col-md-5">
+                                        <label>С</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <p>{{ town.date_from }}</p>
+                                    </div>
+                                </div>
+                                <div class="row no-gutters">
+                                    <div class="col-md-5">
+                                        <label>До</label>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <p>{{ town.date_to }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </form>
+{% endblock %}
+
+{% block add_navbar %}
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <i class="fas fa-chevron-right mt-2"></i>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="{% url "scroll_epidemic" epidemiology_pk %}">Список эпидемий <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+            <i class="fas fa-chevron-right mt-2"></i>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="{% url "scroll_region" epidemiology_pk epidemic_pk %}">Список регионов <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+            <i class="fas fa-chevron-right mt-2"></i>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="{% url "scroll_country" epidemiology_pk epidemic_pk region_name %}">Список стран <span class="sr-only">(current)</span></a>
+        </li>
+    </ul>
+{% endblock %}

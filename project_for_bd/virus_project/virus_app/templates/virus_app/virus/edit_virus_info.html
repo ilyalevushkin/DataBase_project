@@ -1,0 +1,144 @@
+{% extends 'virus_app/virus/base_virus.html' %}
+
+{% load static %}
+
+{% block more_style %}
+    <link type="text/css" href="{% static 'css/profile.css' %}" rel="stylesheet">
+    <link type="text/css" href="{% static 'css/virus/edit_virus_info.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <div class="container card emp-profile">
+        <form method="post" action="{% url 'edit_virus_info' pk=virus.pk %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="profile-img">
+                            <img class="img-thumbnail" style="width: 90%;" src="{{ virus.photo.url}}" alt="Фото"/>
+                            <div class="file btn btn-lg btn-primary">
+                                    Изменить фото
+                                    <input type="file" name="photo"/>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        {% if user.is_staff %}
+                            <input type="submit" class="profile-edit-btn" style="margin: 0 auto; margin-top: 10px;" name="btnConfirm" value="Сохранить"/>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="profile-head">
+                                    <h5 style="color: #333;">
+                                        {{ virus.name }}
+                                    </h5>
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Эпидемиология</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="tab-content profile-tab" id="myTabContent">
+                            <div class="tab-pane fade show active" style="width:115%" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                <div class="row" >
+                                    <div class="col-md-3">
+                                        <label>Структура</label>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <select class="custom-select" name="select-structure" style="">
+                                            <option selected value="{{ epidemiology.structure }}">{{ epidemiology.structure }}</option>
+                                            {% for other_structure in other_epidemiology.other_structure %}
+                                                <option value="{{ other_structure }}">{{ other_structure }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label>Источник инфекции</label>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <select class="custom-select" name="select-source-of-infection" style="">
+                                            <option selected value="{{ epidemiology.source_of_infection }}">{{ epidemiology.source_of_infection }}</option>
+                                            {% for other_source_of_infection in other_epidemiology.other_source_of_infection %}
+                                                <option value="{{ other_source_of_infection }}">{{ other_source_of_infection }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label>Механизм передачи</label>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <select class="custom-select" name="select-transmission-mechanism" style="">
+                                            <option selected value="{{ epidemiology.transmission_mechanism }}">{{ epidemiology.transmission_mechanism }}</option>
+                                            {% for other_transmission_mechanism in other_epidemiology.other_transmission_mechanism %}
+                                                <option value="{{ other_transmission_mechanism }}">{{ other_transmission_mechanism }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row" style="height: 90px;">
+                                    <div class="col-md-3">
+                                        <label>Пути передачи</label>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <select class="custom-select" multiple size="3" name="select-transmission-ways" style="">
+                                            {% for transmission_way in epidemiology.transmission_ways %}
+                                                <option selected value="{{ transmission_way }}">{{ transmission_way }}</option>
+                                            {% endfor %}
+                                            {% for other_transmission_way in other_epidemiology.other_transmission_ways %}
+                                                <option value="{{ other_transmission_way }}">{{ other_transmission_way }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row" style="height: 90px;">
+                                    <div class="col-md-3">
+                                        <label>Места поражения</label>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <select class="custom-select" multiple size="3" name="select-place-of-beatings" style="">
+                                            {% for place_of_beating in epidemiology.place_of_beatings %}
+                                                <option selected value="{{ place_of_beating }}">{{ place_of_beating }}</option>
+                                            {% endfor %}
+                                            {% for other_place_of_beating in other_epidemiology.other_place_of_beatings %}
+                                                <option value="{{ other_place_of_beating }}">{{ other_place_of_beating }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label>Симптомы</label>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <input name="symptoms" value = "{{ epidemiology.symptoms }}" class="form-control" type="text">
+                                    </div>
+                                </div>
+                                <div class="row" style="height: auto;">
+                                    <div class="col-md-3">
+                                        <label>Описание</label>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <textarea name="more-info" rows="10" class="form-control" type="text">{{ epidemiology.more_info }}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="row">
+                        <a href="{% url 'more_virus_info' pk=virus.pk %}" class="btn btn-primary btn-block">Назад</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

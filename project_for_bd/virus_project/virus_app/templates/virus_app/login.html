@@ -1,0 +1,45 @@
+{% extends "virus_app/base_info.html" %}
+{% load static %}
+
+{% block title %}
+    Вход
+{% endblock %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link type="text/css" href="{% static 'css/virus_app.css' %}" rel="stylesheet">
+    <link type="text/css" href="{% static 'css/register_background.css' %}" rel="stylesheet">
+{% endblock %}
+{% block content %}
+    <form action="{% url 'login' %}" method="POST">
+        {% csrf_token %}
+        <div class="card w-25 bg-light" style="margin: 0 auto; margin-top: 80px;">
+            <article class="card-body mx-auto" style="max-width: 400px;">
+                {% if form.errors %}
+                <h4 class="card-title mt-3 text-center">Неправильно введены логин или пароль.</h4>
+                <h4 class="card-title mt-3 text-center">Попробуйте снова!</h4>
+                {% else %}
+                    <h4 class="card-title mt-3 text-center">Войти в аккаунт</h4>
+                {% endif %}
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                     </div>
+                    <input name="username" class="form-control" placeholder="Полное имя" type="text">
+                </div>
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                    </div>
+                    <input name="password" class="form-control" placeholder="Пароль" type="password">
+                </div>
+                    <input type="hidden" name="next" value="{{ next }}" />
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block"> Войти в аккаунт  </button>
+                </div>
+                <p class="text-center">Нет аккаунта? <a href="{% url 'register' %}">Зарегистрироваться</a> </p>
+            </form>
+            </article>
+        </div>
+    </form>
+{% endblock %}

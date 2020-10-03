@@ -1,0 +1,9 @@
+google.charts.setOnLoadCallback(drawDateRegionInfected);
+google.charts.setOnLoadCallback(drawDateRegionRecovered);
+google.charts.setOnLoadCallback(drawDateRegionDead);
+google.charts.setOnLoadCallback(drawDateCountryInfected);
+google.charts.setOnLoadCallback(drawDateCountryRecovered);
+google.charts.setOnLoadCallback(drawDateCountryDead);
+google.charts.setOnLoadCallback(drawDateTownInfected);
+google.charts.setOnLoadCallback(drawDateTownRecovered);
+google.charts.setOnLoadCallback(drawDateTownDead);

@@ -1,0 +1,55 @@
+{% extends 'virus_app/virus/base_virus.html' %}
+
+{% load static %}
+
+{% block more_style %}
+    <link type="text/css" href="{% static 'css/virus/virus_grid.css' %}" rel="stylesheet">
+    <link type="text/css" href="{% static 'css/fontawesome.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        {% for viruses in two_viruses_in_row %}
+            <div class="row row-flex row-flex-wrap">
+                {% for virus in viruses %}
+                    {% if virus %}
+                        <div class="col-md-6 col-sm-6">
+                            <div class="card mb-4 mt-4 pl-2 pt-2">
+                                <div class="row no-gutters">
+                                    <div class="col-6">
+                                        <img class="img-thumbnail" src="{{ virus.photo.url}}" alt="Фото вируса">
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="card-block px-2">
+                                            <h4 class="card-title"><a href="{% url 'more_virus_info' pk=virus.pk %}">{{ virus.name }}</a></h4>
+                                        </div>
+                                    </div>
+                                    <div class="col pl-4">
+                                        <div class="row" style="margin-top: 5px;">
+                                            {% if request.user.is_active %}
+                                                {% if virus in fav_viruses %}
+                                                    <button type="submit" name="delete_from_fav_{{ virus.pk }}" class="btn btn-primary btn-circle"><i class="fas fa-star fa-2x" aria-hidden="true"></i></button>
+                                                {% else %}
+                                                    <button type="submit" name="put_in_fav_{{ virus.pk }}" class="btn btn-primary btn-circle"><i class="far fa-star fa-2x" aria-hidden="true"></i></button>
+                                                {% endif %}
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row no-gutters">
+                                    <div class="col-md-10 col-sm-10">
+                                        <textarea class="card-text" rows="5" name="about" readonly style="height: 100%; width: 100%; outline: none;-moz-appearance: none;border: 1px solid #ffffff; resize: none;">{{ virus.epidemiology.more_info }}</textarea>
+                                    </div>
+                                    <div class="col-md-2 col-sm-2" style="padding-left: 7px;">
+                                        <button type="submit" name="show_epidemics_{{ virus.pk }}" class="btn btn-primary btn-circle"><i class="fas fa-check fa-2x" aria-hidden="true"></i><br>Выбрать</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </form>
+{% endblock %}

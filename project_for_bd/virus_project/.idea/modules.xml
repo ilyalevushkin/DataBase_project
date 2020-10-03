@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../../tex/code/.idea/code.iml" filepath="$PROJECT_DIR$/../../tex/code/.idea/code.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../../django_example/.idea/django_example.iml" filepath="$PROJECT_DIR$/../../../django_example/.idea/django_example.iml" />
+      <module fileurl="file://$USER_HOME$/Downloads/iu7-software-design-labs-2020-vasyukovalexey-dev/src/.idea/src.iml" filepath="$USER_HOME$/Downloads/iu7-software-design-labs-2020-vasyukovalexey-dev/src/.idea/src.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/virus_project.iml" filepath="$PROJECT_DIR$/.idea/virus_project.iml" />
+    </modules>
+  </component>
+</project>

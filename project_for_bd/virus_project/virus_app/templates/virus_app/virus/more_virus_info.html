@@ -1,0 +1,114 @@
+{% extends 'virus_app/virus/base_virus.html' %}
+
+{% load static %}
+{% block title %}
+    Доп. информация
+{% endblock %}
+
+{% block more_style %}
+    <link type="text/css" href="{% static 'css/profile.css' %}" rel="stylesheet">
+    <link type="text/css" href="{% static 'css/virus/more_virus_info.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <div class="container card emp-profile">
+        <form method="post" action="{% url 'more_virus_info' pk=virus.pk %}">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="profile-img">
+                            <img class="img-thumbnail" style="width: 90%;" src="{{ virus.photo.url}}" alt="Фото"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        {% if user.is_staff %}
+                            <input type="submit" class="profile-edit-btn" style="margin: 0 auto; margin-top: 10px;" name="btnEdit" value="Редактировать информацию"/>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="profile-head">
+                                    <h5 style="color: #333;">
+                                        {{ virus.name }}
+                                    </h5>
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Эпидемиология</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="tab-content profile-tab" id="myTabContent">
+                            <div class="tab-pane fade show active" style="width:115%" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label>Структура</label>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <p>{{ epidemiology.structure }}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label>Источники инфекции</label>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <p>{{ epidemiology.source_of_infection }}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label>Механизмы передачи</label>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <p>{{ epidemiology.transmission_mechanism }}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label>Пути передачи</label>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <p>{{ epidemiology.transmission_ways }}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label>Места поражения</label>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <p>{{ epidemiology.place_of_beatings }}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label>Симптомы</label>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <p>{{ epidemiology.symptoms }}</p>
+                                    </div>
+                                </div>
+                                <div class="row" style="height: auto;">
+                                    <div class="col-md-3">
+                                        <label>Описание</label>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <textarea name="about" rows="10" readonly style="outline: none;-moz-appearance: none;border: 1px solid #ffffff; resize: none;">{{ epidemiology.more_info }}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="row">
+                        <a href="{% url 'base_info' %}" class="btn btn-primary btn-block">Назад</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

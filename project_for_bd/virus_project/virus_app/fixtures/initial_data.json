@@ -1,0 +1,202 @@
+[
+  {
+    "model": "virus_app.transmissionways",
+    "pk": 6,
+    "fields": {
+      "transmission_way": "\u0410\u043b"
+    }
+  },
+  {
+    "model": "virus_app.transmissionways",
+    "pk": 7,
+    "fields": {
+      "transmission_way": "\u041a\u0431"
+    }
+  },
+  {
+    "model": "virus_app.transmissionways",
+    "pk": 8,
+    "fields":
+    {
+      "transmission_way": "\u0412\u043e\u0434"
+    }
+  },
+  {
+    "model": "virus_app.placeofbeating",
+    "pk": 4,
+    "fields": {
+      "place_of_beating": "\u041e\u0434\u0441"
+    }
+  },
+  {
+    "model": "virus_app.placeofbeating",
+    "pk": 5,
+    "fields": {
+      "place_of_beating": "\u041f\u043a\u0441"
+    }
+  },
+  {
+    "model": "virus_app.placeofbeating",
+    "pk": 6,
+    "fields": {
+      "place_of_beating": "\u0421\u043a"
+    }
+  },
+  {
+    "model": "virus_app.placeofbeating",
+    "pk": 7,
+    "fields": {
+      "place_of_beating": "\u041d\u0441"
+    }
+  },
+  {
+    "model": "virus_app.epidemiology",
+    "pk": 5,
+    "fields": {
+      "structure": "\u0421",
+      "source_of_infection": "\u0410\u043d\u0442",
+      "transmission_mechanism": "\u0410\u044d",
+      "symptoms": "\u0422\u0430\u0445\u0438\u043a\u0430\u0440\u0434\u0438\u044f",
+      "more_info": "\u0411\u043e\u043b\u044c\u0448\u0435 \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u0438",
+      "transmission_way": [6],
+      "place_of_beating": [4, 5]
+    }
+  },
+  {
+    "model": "virus_app.epidemiology",
+    "pk": 6,
+    "fields": {
+      "structure": "\u0418",
+      "source_of_infection": "\u0417\u043e\u043e",
+      "transmission_mechanism": "\u0413\u043c",
+      "symptoms": "\u0421\u0438\u043c\u043f\u0442\u043e\u043c \u21161, \u0421\u0438\u043c\u043f\u0442\u043e\u043c \u21162",
+      "more_info": "\u0411\u043e\u043b\u044c\u0448\u0435 \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u0438",
+      "transmission_way": [6],
+      "place_of_beating": [5]
+    }
+  },
+  {
+    "model": "virus_app.epidemiology",
+    "pk": 7,
+    "fields": {
+      "structure": "\u041a\u043c",
+      "source_of_infection": "\u0417\u0430",
+      "transmission_mechanism": "\u0422\u0440",
+      "symptoms": "\u0421\u0438\u043c\u043f\u0442\u043e\u043c\u044b \u0441\u0438\u043c\u043f\u0442\u043e\u043c\u044b \u0441\u0438\u043c\u043f\u0442\u043e\u043c\u044b",
+      "more_info": "\u0415\u0449\u0435 \u0431\u043e\u043b\u044c\u0448\u0435 \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u0438\u0438\u0438",
+      "transmission_way": [7],
+      "place_of_beating": [5]
+    }
+  },
+  {
+    "model": "virus_app.epidemiology",
+    "pk": 8,
+    "fields": {
+      "structure": "\u0418",
+      "source_of_infection": "\u0410\u043d\u0442",
+      "transmission_mechanism": "\u0412\u0440",
+      "symptoms": "\u0421\u0438\u043c\u043f\u0442\u043e\u043e\u043e\u043e\u043c\u044b",
+      "more_info": "\u0418\u043d\u0444\u043e\u0440\u043c\u0430\u0430\u0430\u0430\u0430\u0446\u0438\u044f",
+      "transmission_way": [6, 7],
+      "place_of_beating": [4, 6]
+    }
+  },
+  {
+    "model": "virus_app.epidemiology",
+    "pk": 9,
+    "fields": {
+      "structure": "\u0418",
+      "source_of_infection": "\u0417\u043e\u043e",
+      "transmission_mechanism": "\u0424\u043e",
+      "symptoms": "\u0418 \u0441\u043d\u043e\u0432\u0430 \u043a\u0430\u043a\u0438\u0435-\u0442\u043e \u0441\u0438\u043c\u043f\u0442\u043e\u043c\u044b",
+      "more_info": "\u0410 \u0442\u0443\u0442 \u043d\u0443 \u043e\u0447\u0435\u043d\u044c \u043c\u043d\u043e\u0433\u043e \u0434\u043e\u043f\u043e\u043b\u043d\u0438\u0442\u0435\u043b\u044c\u043d\u043e\u0439 \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u0438",
+      "transmission_way": [7, 8],
+      "place_of_beating": [4, 7]
+    }
+  },
+  {
+    "model": "virus_app.virus",
+    "pk": 4,
+    "fields": {
+      "name": "\u0418\u0441\u043f\u0430\u043d\u0441\u043a\u0438\u0439 \u0433\u0440\u0438\u043f\u043f",
+      "epidemiology": 5,
+      "photo": "img/viruses/1.png"
+    }
+  },
+  {
+    "model": "virus_app.virus",
+    "pk": 5,
+    "fields": {
+      "name": "\u0420\u0430\u043a",
+      "epidemiology": 6,
+      "photo": "img/viruses/2.jpg"
+    }
+  },
+  {
+    "model": "virus_app.virus",
+    "pk": 6,
+    "fields": {
+      "name": "\u0427\u0443\u043c\u0430",
+      "epidemiology": 7,
+      "photo": "img/viruses/3.jpeg"
+    }
+  },
+  {
+    "model": "virus_app.virus",
+    "pk": 7,
+    "fields": {
+      "name": "COVID-19",
+      "epidemiology": 8,
+      "photo": "img/viruses/4.webp"
+    }
+  },
+  {
+    "model": "virus_app.virus",
+    "pk": 8,
+    "fields": {
+      "name": "\u041e\u0441\u043f\u0430",
+      "epidemiology": 9,
+      "photo": "img/viruses/5.jpg"
+    }
+  },
+  {
+    "model": "virus_app.epidemic",
+    "pk": 5,
+    "fields": {
+      "source_country_of_infection": "RU",
+      "epidemiology": 5
+    }
+  },
+  {
+    "model": "virus_app.epidemic",
+    "pk": 6,
+    "fields": {
+      "source_country_of_infection": "AL",
+      "epidemiology": 6
+    }
+  },
+  {
+    "model": "virus_app.epidemic",
+    "pk": 7,
+    "fields": {
+      "source_country_of_infection": "US",
+      "epidemiology": 7
+    }
+  },
+  {
+    "model": "virus_app.epidemic",
+    "pk": 8,
+    "fields": {
+      "source_country_of_infection": "AE",
+      "epidemiology": 8
+    }
+  },
+  {
+    "model": "virus_app.epidemic",
+    "pk": 9,
+    "fields": {
+      "source_country_of_infection": "RU",
+      "epidemiology": 9
+    }
+  }
+]

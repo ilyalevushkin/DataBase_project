@@ -1,0 +1,8 @@
+[
+  {
+    "model": "virus_app.epidemiology", "pk": 1, "fields": {"structure": "\u041a\u043f", "source_of_infection": "\u0417\u043e\u043e", "transmission_mechanism": "\u0410\u044d", "symptoms": "\u0421\u0438\u043c\u043f\u0442\u043e\u043c1", "more_info": "\u0418\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044f1", "transmission_way": [3], "place_of_beating": [3]}
+  },
+  {
+    "model": "virus_app.epidemiology", "pk": 2, "fields": {"structure": "\u0421", "source_of_infection": "\u0410\u043d\u0442", "transmission_mechanism": "\u041a\u043d", "symptoms": "\u0421\u0438\u043c\u043f\u0442\u043e\u043c2", "more_info": "\u0418\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044f2, \u0435\u0449\u0435 \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044f", "transmission_way": [3], "place_of_beating": [3]}
+  }
+]

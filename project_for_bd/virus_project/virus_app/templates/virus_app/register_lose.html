@@ -1,0 +1,19 @@
+{% extends "virus_app/base_info.html" %}
+{% load static %}
+
+{% block title %}
+    Неудача
+{% endblock %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link type="text/css" href="{% static 'css/virus_app.css' %}" rel="stylesheet">
+    <link type="text/css" href="{% static 'css/register_background.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <div class="card w-50 bg-light" style="margin: 0 auto; margin-top: 80px; padding: 10px;">
+        <h1>Неправильно заполнена форма.</h1>
+        <a href="{% url "register" %}" class="btn btn-primary btn-block">Попробовать еще раз</a>
+    </div>
+{% endblock %}
